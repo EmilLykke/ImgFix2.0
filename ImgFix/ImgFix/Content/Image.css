@@ -1,0 +1,82 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagesection {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+    .imagesection .image {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+    }
+
+        .imagesection .image img {
+            height: calc(70vh - 55px);
+        }
+
+        .imagesection .image button {
+            margin-top: 15px;
+            width: 100%;
+            height: 40px;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            cursor: pointer;
+            background: #5865F2 url('Images/download.png') no-repeat;
+            background-position: 90%;
+            background-size: 30px;
+            transition: 200ms;
+        }
+
+    .imagesection .text {
+        height: 70vh;
+        width: 300px;
+        ;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .imagesection .text h1 {
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .imagesection .text button {
+            width: 100%;
+            height: 40px;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            cursor: pointer;
+            background: #FF8484;
+            transition: 200ms;
+        }
+
+    .imagesection .textfield p {
+        margin: 0;
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+.text-wrapper {
+    height: calc(70vh - 55px);
+    overflow: auto;
+    margin-bottom: 15px;
+}

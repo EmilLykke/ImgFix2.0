@@ -1,0 +1,100 @@
+.image-grid {
+    margin: 15px 20px;
+    height: 50px;
+    height: calc(100vh - 90px);
+    overflow-y: auto;
+}
+
+.image-grid-container {
+    padding-right: 30px;
+    display: grid;
+    column-gap: 30px;
+    row-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.image {
+    border-radius: 15px;
+    background: url('Images/test.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+}
+
+.imagewrapper {
+    transition: 200ms;
+    border-radius: 15px;
+    padding: 10px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0
+}
+
+    .imagewrapper:hover {
+        opacity: 1;
+        background-position: center;
+    }
+
+.text {
+    overflow: auto;
+    height: calc(100% - 55px);
+}
+
+    .text p {
+        margin: 0 5px 0 0;
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+button[name=download] {
+    margin-top: 15px;
+    width: 65%;
+    height: 40px;
+    border-radius: 15px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer;
+    background: #5865f2;
+    background-position: 95%;
+    background-size: 30px;
+    transition: 200ms;
+    float: left;
+}
+
+    button[name=download]:hover {
+        background: #4a54c9;
+    }
+
+
+button[name=delete] {
+    float: right;
+    margin-top: 15px;
+    width: 30%;
+    height: 40px;
+    border-radius: 15px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+    background: #FF8484;
+    background-position: 95%;
+    background-size: 30px;
+    transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    button[name=delete] svg {
+        fill: white;
+        width: 20px;
+    }
+
+    button[name=delete]:hover {
+        background: #ff6363;
+    }

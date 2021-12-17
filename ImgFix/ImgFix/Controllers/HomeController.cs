@@ -13,14 +13,14 @@ namespace ImgFix.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Image()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult MyImages()
         {
             ViewBag.Message = "Your contact page.";
 

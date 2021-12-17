@@ -24,6 +24,9 @@ namespace ImgFix
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Main.css",
+                      "~/Content/MyImages.css",
+                      "~/Content/Image.css",
                       "~/Content/site.css"));
         }
     }
