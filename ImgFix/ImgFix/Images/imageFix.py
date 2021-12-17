@@ -6,7 +6,7 @@ from pytesseract import *
 pytesseract.tesseract_cmd = r"Tesseract-OCR\tesseract.exe"
 
 
-img = cv2.imread("test.jpg")
+img = cv2.imread("nyt2.png")
 img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 img = cv2.resize(img, (560, 900))
 
