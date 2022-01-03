@@ -3,7 +3,7 @@ import cv2
 from PIL import Image
 from pytesseract import *
 
-pytesseract.tesseract_cmd = r"Tesseract-OCR\tesseract.exe"
+pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
 img = cv2.imread("nyt2.png")
@@ -24,3 +24,4 @@ img2 = Image.open("temporary.jpg")
 new_size = tuple(4*x for x in img2.size)
 img2 = img2.resize(new_size, Image.ANTIALIAS)
 output = str(pytesseract.image_to_string(img2))
+print(output)
