@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ImgFix",
+    "\\ImgFix\\ImgFix",
+    "\\ImgFix\\ImgFix\\Controllers"
   ],
-  "SelectedNode": "\\ImgFix.sln",
+  "SelectedNode": "\\ImgFix\\ImgFix\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
