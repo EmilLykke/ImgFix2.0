@@ -39,28 +39,34 @@ namespace ImgFix.Controllers
             ImgTBF imag = new ImgTBF();
             imag.name = run_cmd();
             ViewData["Message"] = imag.name;
-            return View(imag);
+            return Json(imag);
         }
         private string run_cmd()
         {
-           
-            var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            var fileName = Path.Combine(outPutDirectory, "Images\\imageFix.py");
-            string file_Name = new Uri(fileName).LocalPath;
+            string output = "";
+            ProcessStartInfo start = new ProcessStartInfo();
+            Directory.GetCurrentDirectory();
+            start.FileName = "python";
+            start.Arguments = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images\\imageFix.py");
 
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            start.RedirectStandardError = true;
+            start.CreateNoWindow = true;
 
-            Process p = new Process();
-            p.StartInfo = new ProcessStartInfo(@"C:\Python27\python.exe", file_Name)
+            using (Process process = Process.Start(start))
             {
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-            p.Start();
-
-            string output = p.StandardOutput.ReadToEnd();
-            p.WaitForExit();
-
+                using (StreamReader reader = process.StandardError)
+                {
+                    string error = reader.ReadToEnd();
+                    Debug.WriteLine(error);
+                }
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    output = reader.ReadToEnd();
+                    Debug.WriteLine(output);
+                }
+            }
             return output;
 
 

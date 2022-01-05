@@ -77,3 +77,4 @@ C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.c
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.CopyComplete
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.dll
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.pdb
+C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Images\imageFix.py

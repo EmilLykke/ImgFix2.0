@@ -1,8 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ImgFix"
+    "\\ImgFix",
+    "\\ImgFix\\ImgFix",
+    "\\ImgFix\\ImgFix\\Controllers",
+    "\\ImgFix\\ImgFix\\Images",
+    "\\ImgFix\\ImgFix\\Models",
+    "\\ImgFix\\ImgFix\\Views",
+    "\\ImgFix\\ImgFix\\Views\\Shared"
   ],
-  "SelectedNode": "\\ImgFix\\ImgFix.sln",
+  "SelectedNode": "\\ImgFix\\ImgFix\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
