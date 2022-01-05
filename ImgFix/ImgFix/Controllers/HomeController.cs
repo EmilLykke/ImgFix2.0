@@ -48,7 +48,7 @@ namespace ImgFix.Controllers
             Directory.GetCurrentDirectory();
             start.FileName = "python";
             start.Arguments = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images\\imageFix.py");
-
+            Debug.WriteLine(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images\\imageFix.py"));
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.RedirectStandardError = true;
@@ -59,7 +59,7 @@ namespace ImgFix.Controllers
                 using (StreamReader reader = process.StandardError)
                 {
                     string error = reader.ReadToEnd();
-                    Debug.WriteLine(error);
+                    Debug.WriteLine("Error: " + error);
                 }
                 using (StreamReader reader = process.StandardOutput)
                 {
