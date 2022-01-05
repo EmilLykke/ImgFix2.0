@@ -172,6 +172,7 @@
     <Content Include="Images\Tesseract-OCR\tessdata\tessconfigs\nobatch" />
     <Content Include="Images\Tesseract-OCR\tessdata\tessconfigs\segdemo" />
     <None Include="Views\Home\Image.cshtml" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Views\Home\MyImages.cshtml" />
   </ItemGroup>
   <ItemGroup>

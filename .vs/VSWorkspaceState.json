@@ -3,11 +3,7 @@
     "",
     "\\ImgFix",
     "\\ImgFix\\ImgFix",
-    "\\ImgFix\\ImgFix\\Controllers",
-    "\\ImgFix\\ImgFix\\Images",
-    "\\ImgFix\\ImgFix\\Models",
-    "\\ImgFix\\ImgFix\\Views",
-    "\\ImgFix\\ImgFix\\Views\\Shared"
+    "\\ImgFix\\ImgFix\\Controllers"
   ],
   "SelectedNode": "\\ImgFix\\ImgFix\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false

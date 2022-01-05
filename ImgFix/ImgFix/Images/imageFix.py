@@ -6,12 +6,10 @@ from pytesseract import *
 
 pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-
-img = cv2.imread (r"C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\Images\nyt2.png")
+img = cv2.imread (sys.argv[1])
 img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # _, result = cv2.threshold(img, 20, 255, cv2.THRESH_BINARY)
-
 adaptive = cv2.adaptiveThreshold(
     img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
 

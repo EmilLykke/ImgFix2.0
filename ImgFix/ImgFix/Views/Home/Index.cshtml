@@ -5,7 +5,8 @@
 <section class="input">
     <h1>Convert images to text</h1>
     <p>Easily scan text in an image or make text readable click the button below to get started</p>
-    <a href="@Url.Action("Image", "Home")"><button type="button" name="button">Upload image</button></a>
+    <a><button id="uploadButton" type="button" name="uploadButton">Upload image</button></a>
+    <input type="file" id="imagePicker" name="avatar" accept="image/png, image/jpeg" style="display: none;" onchange="sendImage(this.files)"> 
 </section>
 <section class="status">
     <p>Uploading image 70%</p>

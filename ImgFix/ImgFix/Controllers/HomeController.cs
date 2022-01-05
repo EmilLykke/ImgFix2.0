@@ -32,23 +32,26 @@ namespace ImgFix.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(ImgTBF image)
+        public ActionResult UploadImage(HttpPostedFileBase file)
         {
-
-            
-            ImgTBF imag = new ImgTBF();
-            imag.name = run_cmd();
-            ViewData["Message"] = imag.name;
-            return Json(imag);
+            if(file != null)
+            {
+                file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
+                string text = run_cmd(Server.MapPath("~/Images/" + file.FileName));
+                return Json(text);
+            } else
+            {
+                return Json("No file");
+            }
         }
-        private string run_cmd()
+        private string run_cmd(string path)
         {
             string output = "";
             ProcessStartInfo start = new ProcessStartInfo();
             Directory.GetCurrentDirectory();
             start.FileName = "python";
-            start.Arguments = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images\\imageFix.py");
-            Debug.WriteLine(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images\\imageFix.py"));
+            start.Arguments = (Server.MapPath("~/Images/imageFix.py")) + " \"" + path + "\"";
+            Debug.WriteLine(start.Arguments);
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.RedirectStandardError = true;
