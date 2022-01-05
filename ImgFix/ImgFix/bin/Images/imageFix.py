@@ -6,7 +6,10 @@ from pytesseract import *
 
 pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-img = cv2.imread (sys.argv[1])
+
+img_data = sys.argv[1]
+
+img = cv2.imread(img_data.decode('base64'))
 img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # _, result = cv2.threshold(img, 20, 255, cv2.THRESH_BINARY)
