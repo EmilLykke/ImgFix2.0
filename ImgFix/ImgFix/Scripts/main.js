@@ -4,18 +4,22 @@ $(document).ready(function () {
     })
 });
 
-function sendImage(image) {
-    var formData = new FormData();
-    formData.append('file', image[0]);
-    console.log(formData)
-    $.ajax({
-        url: "Home/UploadImage",
-        data: formData,
-        type: "POST",
-        processData: false,  // tell jQuery not to process the data
-        contentType: false,
-        success: function (msg) {
+async function sendImage(image) {
+    var base64 = await getBase64(image[0])
+    console.log(base64)
+    $.post(
+        "Home/UploadImage", { file: base64 }, function (msg) {
             console.log(msg)
         }
-    });
+    );
+}
+
+async function getBase64(file) {
+    const reader = new FileReader()
+    return new Promise(resolve => {
+        reader.onload = ev => {
+            resolve(ev.target.result)
+        }
+        reader.readAsDataURL(file)
+    })
 }

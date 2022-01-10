@@ -32,8 +32,11 @@ namespace ImgFix.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadImage(HttpPostedFileBase file)
+        public ActionResult UploadImage(string file)
         {
+            Debug.WriteLine(file);
+            return Json("good");
+            /*
             if(file != null)
             {
                 file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
@@ -42,7 +45,7 @@ namespace ImgFix.Controllers
             } else
             {
                 return Json("No file");
-            }
+            }*/
         }
         private string run_cmd(string path)
         {

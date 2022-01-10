@@ -3,8 +3,10 @@
     "",
     "\\ImgFix",
     "\\ImgFix\\ImgFix",
-    "\\ImgFix\\ImgFix\\Controllers"
+    "\\ImgFix\\ImgFix\\Controllers",
+    "\\ImgFix\\ImgFix\\Images",
+    "\\ImgFix\\ImgFix\\Scripts"
   ],
-  "SelectedNode": "\\ImgFix\\ImgFix\\Controllers\\HomeController.cs",
+  "SelectedNode": "\\ImgFix\\ImgFix\\Scripts\\main.js",
   "PreviewInSolutionExplorer": false
 }
