@@ -39,6 +39,7 @@ adaptive = cv2.adaptiveThreshold(
 # cv2.waitKey(0)
 
 cv2.imwrite(r"C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\Images\temporary.jpg", adaptive)
+# cv2.imwrite(r"C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\Images\temporary.jpg", img)
 img2 = Image.open(r"C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\Images\temporary.jpg")
 # cv2.imwrite(r"C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\Images\temporary.jpg", adaptive)
 # img2 = Image.open(r"C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\Images\temporary.jpg")
