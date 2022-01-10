@@ -34,26 +34,27 @@ namespace ImgFix.Controllers
         [HttpPost]
         public ActionResult UploadImage(string file)
         {
-            Debug.WriteLine(file);
-            return Json("good");
-            /*
-            if(file != null)
+            //Debug.WriteLine(file);
+            //return Json("good");
+
+            if (file != null)
             {
-                file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
-                string text = run_cmd(Server.MapPath("~/Images/" + file.FileName));
+                //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
+                string text = run_cmd(file);
                 return Json(text);
-            } else
+            }
+            else
             {
                 return Json("No file");
-            }*/
+            }
         }
-        private string run_cmd(string path)
+        private string run_cmd(string base64string)
         {
             string output = "";
             ProcessStartInfo start = new ProcessStartInfo();
             Directory.GetCurrentDirectory();
             start.FileName = "python";
-            start.Arguments = (Server.MapPath("~/Images/imageFix.py")) + " \"" + path + "\"";
+            start.Arguments = (Server.MapPath("~/Images/imageFix.py")) +" "+ base64string;
             Debug.WriteLine(start.Arguments);
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
