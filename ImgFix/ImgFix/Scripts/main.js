@@ -5,10 +5,12 @@ $(document).ready(function () {
 });
 
 async function sendImage(image) {
+    console.log("fis")
     var base64 = await getBase64(image[0])
-    console.log(base64)
+    var base64arr = base64.split(",");
+    console.log(base64arr[1])
     $.post(
-        "Home/UploadImage", { file: base64 }, function (msg) {
+        "Home/UploadImage", { file: base64arr[1] }, function (msg) {
             console.log(msg)
         }
     );
