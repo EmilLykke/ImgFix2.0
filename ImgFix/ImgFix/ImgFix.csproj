@@ -248,10 +248,28 @@
     </Compile>
     <Compile Include="Models\ImgTBF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Content\Images\download.png" />
-    <Content Include="Content\Images\test.png" />
-    <Content Include="Content\Images\upload.png" />
-    <Content Include="Images\imageFix.py">
+    <Content Include="Content\Images\download.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\upload.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\71PiBUplM-L._SL1244_.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\bjoern_cropped_114x114.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\email_resize.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\imageFix1.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\imageFix2.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Tesseract-OCR\doc\AUTHORS" />

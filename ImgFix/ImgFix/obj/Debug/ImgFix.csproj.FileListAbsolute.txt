@@ -78,7 +78,6 @@ C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.c
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.dll
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.pdb
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Images\imageFix.py
-C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Images\imageFix.py
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\ImgFix.dll.config
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\ImgFix.dll
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\ImgFix.pdb
@@ -231,3 +230,11 @@ C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\System.Memory.xml
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\System.Numerics.Vectors.xml
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\System.Threading.Tasks.Extensions.xml
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Images\imageFix1.py
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Images\imageFix2.py
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Images\71PiBUplM-L._SL1244_.jpg
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Images\bjoern_cropped_114x114.jpg
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Images\email_resize.png
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Content\Images\download.png
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Content\Images\test.png
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Content\Images\upload.png
