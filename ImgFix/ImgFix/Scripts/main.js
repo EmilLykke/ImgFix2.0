@@ -1,22 +1,23 @@
 $(document).ready(function () {
     $("#uploadButton1").click(function () {
-        $("#imagePicker1").click()
+        $("#imagePicker1").click();
     })
 });
 
 $(document).ready(function () {
     $("#uploadButton2").click(function () {
-        $("#imagePicker2").click()
+        $("#imagePicker2").click();
     })
 });
 
 async function sendImage(image, type) {
     var base64 = await getBase64(image[0])
+    console.log(base64);
     var base64arr = base64.split(",");
     console.log(base64arr[1]);
     $.post(
         "Home/UploadImage", { file: base64arr[1], type: type }, function (msg) {
-            console.log(msg)
+            console.log(msg);
         }
     );
 }
