@@ -5,10 +5,13 @@
 <section class="input">
     <h1>Convert images to text</h1>
     <p>Easily scan text in an image or make text readable click the button below to get started</p>
-    <a><button id="uploadButton1" type="button" name="uploadButton1">Upload image</button></a>
-    <a><button id="uploadButton2" type="button" name="uploadButton2">Upload image</button></a>
-    <input type="file" id="imagePicker1" name="avatar" accept="image/png, image/jpeg" style="display: none;" onchange="sendImage(this.files, 'not')"> 
-    <input type="file" id="imagePicker2" name="avatar" accept="image/png, image/jpeg" style="display: none;" onchange="sendImage(this.files, 'adaptive')"> 
+    <div>
+        <a><button id="uploadButton1" type="button" name="uploadButton1">Normal</button></a>
+        <a><button id="uploadButton2" type="button" name="uploadButton2">Adaptive</button></a>
+        <input type="file" id="imagePicker1" name="avatar" accept="image/png, image/jpeg" style="display: none;" onchange="sendImage(this.files, 'not')">
+        <input type="file" id="imagePicker2" name="avatar" accept="image/png, image/jpeg" style="display: none;" onchange="sendImage(this.files, 'adaptive')">
+    </div>
+    
 </section>
 <section class="status">
     <p>Uploading image 70%</p>
