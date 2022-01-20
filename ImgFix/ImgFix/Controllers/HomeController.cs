@@ -51,16 +51,25 @@ namespace ImgFix.Controllers
         private string run_cmd(string base64string, string type)
         {
             string output = "";
+           
+            string myTempFile = Path.Combine(Path.GetTempPath(), "base64stringFile.txt");
+            using (StreamWriter sw = new StreamWriter(myTempFile))
+            {
+                Debug.WriteLine(myTempFile);
+                sw.WriteLine(base64string);
+                sw.Flush();
+                sw.Close();
+            }
             ProcessStartInfo start = new ProcessStartInfo();
             Directory.GetCurrentDirectory();
             start.FileName = "python";
             if (type == "adaptive")
             {
-                start.Arguments = (Server.MapPath("~/Images/imageFix1.py")) + " " + base64string;
+                start.Arguments = (Server.MapPath("~/Images/imageFix1.py")) + " " + myTempFile;
             }
             else
             {
-                start.Arguments = (Server.MapPath("~/Images/imageFix2.py")) + " " + base64string;
+                start.Arguments = (Server.MapPath("~/Images/imageFix2.py")) + " " + myTempFile;
             }
             
             Debug.WriteLine(start.Arguments);

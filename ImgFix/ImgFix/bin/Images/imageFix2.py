@@ -7,10 +7,20 @@ from pytesseract import *
 import base64
 import numpy as np
 
+
 pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
-img_data = sys.argv[1]
+base64string_path = sys.argv[1]
+
+
+
+# img_data = r"C:\Users\{}\AppData\Local\Temp\base64stringFile.txt".format(os.getlogin())
+img_data = ""
+with open(base64string_path) as f:
+    lines = f.readlines()
+    img_data = lines[0]
+
 # Take in base64 string and return PIL image
 def stringToImage(base64_string):
     imgdata = base64.b64decode(base64_string)
