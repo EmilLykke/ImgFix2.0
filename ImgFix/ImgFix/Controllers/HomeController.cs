@@ -32,15 +32,15 @@ namespace ImgFix.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadImage(string file)
+        public ActionResult UploadImage(string file, string type)
         {
             //Debug.WriteLine(file);
             //return Json("good");
-
+            
             if (file != null)
             {
                 //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
-                string text = run_cmd(file);
+                string text = run_cmd(file, type);
                 return Json(text);
             }
             else
@@ -48,19 +48,36 @@ namespace ImgFix.Controllers
                 return Json("No file");
             }
         }
-        private string run_cmd(string base64string)
+        private string run_cmd(string base64string, string type)
         {
             string output = "";
+           
+            string myTempFile = Path.Combine(Path.GetTempPath(), "base64stringFile.txt");
+            using (StreamWriter sw = new StreamWriter(myTempFile))
+            {
+                Debug.WriteLine(myTempFile);
+                sw.WriteLine(base64string);
+                sw.Flush();
+                sw.Close();
+            }
             ProcessStartInfo start = new ProcessStartInfo();
             Directory.GetCurrentDirectory();
             start.FileName = "python";
-            start.Arguments = (Server.MapPath("~/Images/imageFix.py")) +" "+ base64string;
+            if (type == "adaptive")
+            {
+                start.Arguments = (Server.MapPath("~/Images/imageFix1.py")) + " " + myTempFile;
+            }
+            else
+            {
+                start.Arguments = (Server.MapPath("~/Images/imageFix2.py")) + " " + myTempFile;
+            }
+            
             Debug.WriteLine(start.Arguments);
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.RedirectStandardError = true;
             start.CreateNoWindow = true;
-
+            
             using (Process process = Process.Start(start))
             {
                 using (StreamReader reader = process.StandardError)
