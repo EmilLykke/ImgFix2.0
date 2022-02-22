@@ -301,15 +301,6 @@
     <Content Include="Content\Images\upload.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\71PiBUplM-L._SL1244_.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\bjoern_cropped_114x114.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\email_resize.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\imageFix1.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -384,11 +375,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\hej.jpg" />
-    <Content Include="Images\hej2.jpg" />
-    <Content Include="Images\nyt.png" />
-    <Content Include="Images\nyt2.png" />
-    <Content Include="Images\temporary.jpg" />
     <Content Include="Images\Tesseract-OCR\ambiguous_words.1.html" />
     <Content Include="Images\Tesseract-OCR\ambiguous_words.exe" />
     <Content Include="Images\Tesseract-OCR\classifier_tester.1.html" />
@@ -477,8 +463,6 @@
     <Content Include="Images\Tesseract-OCR\wordlist2dawg.1.html" />
     <Content Include="Images\Tesseract-OCR\wordlist2dawg.exe" />
     <Content Include="Images\Tesseract-OCR\zlib1.dll" />
-    <Content Include="Images\test.jpg" />
-    <Content Include="Images\test2.jpg" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

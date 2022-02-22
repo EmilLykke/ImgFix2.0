@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
@@ -87,7 +86,7 @@ namespace ImgFix.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult UploadImage(string file, string type)
+        public ActionResult UploadImage(string name, string file, string type)
         {
             //Debug.WriteLine(file);
             //return Json("good");
@@ -96,7 +95,8 @@ namespace ImgFix.Controllers
             {
                 //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
                 string text = run_cmd(file, type);
-                return Json(text);
+                string total = "This is name: " + name + "\n" + "This is the output: " + text;
+                return Json(total);
             }
             else
             {
@@ -147,6 +147,10 @@ namespace ImgFix.Controllers
                 }
             }
             return output;
+
+
+
+
         }
     }
 }
