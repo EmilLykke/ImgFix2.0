@@ -12,9 +12,62 @@ namespace ImgFix.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult LogIn(LogInModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            // Don't do this in production!
+            if (model.Email == "admin@admin.com" && model.Password == "password")
+            {
+                var identity = new ClaimsIdentity(new[] {
+                new Claim(ClaimTypes.Name, "Ben"),
+                new Claim(ClaimTypes.Email, "a@b.com"),
+                new Claim(ClaimTypes.Country, "England")
+            },
+                    "ApplicationCookie");
+
+                var ctx = Request.GetOwinContext();
+                var authManager = ctx.Authentication;
+
+                authManager.SignIn(identity);
+
+                return Redirect(GetRedirectUrl(model.ReturnUrl));
+            }
+
+            // user authN failed
+            ModelState.AddModelError("", "Invalid email or password");
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult LogOut()
+        {
+            var ctx = Request.GetOwinContext();
+            var authManager = ctx.Authentication;
+
+            authManager.SignOut("ApplicationCookie");
+            return RedirectToAction("index", "home");
+        }
+
+        private string GetRedirectUrl(string returnUrl)
+        {
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+            {
+                return Url.Action("index", "home");
+            }
+
+            return returnUrl;
         }
 
         public ActionResult Image()
@@ -32,6 +85,7 @@ namespace ImgFix.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult UploadImage(string name, string file, string type)
         {
             //Debug.WriteLine(file);
