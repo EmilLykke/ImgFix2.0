@@ -32,7 +32,7 @@ namespace ImgFix.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadImage(string file, string type)
+        public ActionResult UploadImage(string name, string file, string type)
         {
             //Debug.WriteLine(file);
             //return Json("good");
@@ -41,7 +41,8 @@ namespace ImgFix.Controllers
             {
                 //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
                 string text = run_cmd(file, type);
-                return Json(text);
+                string total = "This is name: " + name + "\n" + "This is the output: " + text;
+                return Json(total);
             }
             else
             {
