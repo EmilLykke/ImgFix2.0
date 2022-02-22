@@ -52,7 +52,7 @@ namespace ImgFix.Controllers
         {
             string output = "";
            
-            string myTempFile = Path.Combine(Path.GetTempPath(), "base64stringFile.txt");
+            string myTempFile = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
             using (StreamWriter sw = new StreamWriter(myTempFile))
             {
                 Debug.WriteLine(myTempFile);
