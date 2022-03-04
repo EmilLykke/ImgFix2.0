@@ -6,30 +6,36 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace ImgFix.Controllers
 {
     public class HomeController : Controller
     {
         private readonly UserManager<AppUser> userManager;
-
+        private ImgFixEntities db;
         public HomeController()
             : this(Startup.UserManagerFactory.Invoke())
         {
+            this.db = new ImgFixEntities();
         }
 
         public HomeController(UserManager<AppUser> userManager)
         {
+            this.db = new ImgFixEntities();
             this.userManager = userManager;
+            
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing && userManager != null)
             {
+                db.Dispose();
                 userManager.Dispose();
             }
             base.Dispose(disposing);
@@ -145,12 +151,37 @@ namespace ImgFix.Controllers
         {
             //Debug.WriteLine(file);
             //return Json("good");
-            
+            //Debug.WriteLine("name: " + name);
+            //Debug.WriteLine("file: " +file);
+
+            //Debug.WriteLine("type: " + type);
+            string[] newFile = file.Split(',');
+            Debug.WriteLine("base: " + newFile[1]);
+
             if (file != null)
             {
                 //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
-                string text = run_cmd(file, type);
+
+
+                
+
+
+                string text = run_cmd(newFile[1], type);
                 string total = "This is name: " + name + "\n" + "This is the output: " + text;
+
+                Billeder billede = new Billeder();
+                byte[] fileBytes = Convert.FromBase64String(newFile[1]);
+                billede.Name = name;
+                billede.Mime = name.Split('.')[1];
+                billede.Data = fileBytes;
+                billede.Tekst = text;
+                string userID = User.Identity.GetUserId();
+                billede.AspNetUser = db.AspNetUsers.First(x=>x.Id== userID);
+               
+                db.Billeders.Add(billede);
+                db.SaveChanges();
+
+
                 return Json(total);
             }
             else

@@ -19,6 +19,7 @@ namespace ImgFix
         public string Mime { get; set; }
         public byte[] Data { get; set; }
         public string UserId { get; set; }
+        public string Tekst { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }
