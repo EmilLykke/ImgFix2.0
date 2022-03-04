@@ -240,9 +240,6 @@ C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Content\Images\upload.png
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Content\Images\download.png
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Content\Images\test.png
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Content\Images\upload.png
-C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Images\71PiBUplM-L._SL1244_.jpg
-C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Images\bjoern_cropped_114x114.jpg
-C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Images\email_resize.png
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Images\imageFix1.py
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Images\imageFix2.py
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\BouncyCastle.Crypto.dll
@@ -474,3 +471,16 @@ D:\PROJEKTER\GitHub\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.AssemblyRefe
 D:\PROJEKTER\GitHub\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.CoreCompileInputs.cache
 D:\PROJEKTER\GitHub\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.dll
 D:\PROJEKTER\GitHub\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.pdb
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.dll
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Security.dll
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Owin.dll
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.xml
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Security.xml
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Security.Cookies.xml

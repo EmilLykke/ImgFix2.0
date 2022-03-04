@@ -11,21 +11,46 @@
 <body>
     <section class="signin">
         <div class="signinmodal">
+            <h3 class="error-text" style="display: none"></h3>
             <h1 class="signin-title">Sign in</h1>
-            <input type="text" name="username" placeholder="Username" value="">
+            <input type="text" name="username" placeholder="Email" value="">
             <input type="password" name="password" placeholder="Password" value="">
-            <button type="button" name="button">Sign in</button>
+            <button type="button" name="button" onclick="signIn()">Sign in</button>
         </div>
         <div class="signinbackground" onclick="$(this).parent().fadeOut(200)"></div>
     </section>
+
+    <section class="signup">
+        <div class="signupmodal">
+            <h1 class="signup-title">Sign up</h1>
+            <h3 class="error-text" style="display: none"></h3>
+            <input type="text" name="username" placeholder="Email" value="">
+            <input type="password" name="password" placeholder="Password" value="">
+            <input type="password" name="confirmpassword" placeholder="Confirm password" value="">
+            <button type="button" name="button" onclick="signUp()">Sign up</button>
+        </div>
+        <div class="signupbackground" onclick="$(this).parent().fadeOut(200)"></div>
+    </section>
+
     <section class="header">
         <a href="@Url.Action("Index", "Home")" class="title"><h1>ImgFix</h1></a>
-            <div class="header-right">
+        <div class="header-right">
+            @if (Request.IsAuthenticated)
+            {
                 <a href="@Url.Action("MyImages", "Home")"><button type="button" name="myimages"><h3>My images</h3></button></a>
-                <button type="button" name="login" onclick="$('.signin').fadeIn(200)"><h3>Log in</h3></button>
-            </div>
-</section>
-        @RenderBody()
+                <form action="Home/Logout" style="position: relative; float: right;">
+                    <button type="submit" id="actionbutton"><h3>Log Out</h3></button>
+                </form>
+            }
+            else
+            {
+                <button type="button" id="actionbutton" onclick="$('.signin').fadeIn(200)" style="margin-right: 5px;"><h3>Log in</h3></button>
+                <button type="button" id="actionbutton" onclick="$('.signup').fadeIn(200)"><h3>Sign Up</h3></button>
+            }
+
+        </div>
+    </section>
+    @RenderBody()
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

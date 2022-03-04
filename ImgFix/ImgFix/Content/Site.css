@@ -66,23 +66,27 @@ button[name=myimages]:hover {
     background: #c8c8c8;
 }
 
-button[name=login] {
+#actionbutton {
     border: 2px solid white;
     background: transparent;
 }
 
-button[name=login] h3 {
+#actionbutton h3 {
     color: white;
 }
 
-button[name=login]:hover {
+#actionbutton:hover {
     background: white;
 }
 
-button[name=login]:hover h3 {
+#actionbutton:hover h3 {
     color: #343840;
 }
 
+.signin .error-text, .signup .error-text {
+    margin-top: 5px;
+    color: #fa3e3e;
+}
 .signin {
     position: fixed;
     display: none;
@@ -138,9 +142,71 @@ button[name=login]:hover h3 {
     transition: 200ms;
 }
 
-    .signinmodal button:hover {
-        background: #ff6363;
-    }
+.signinmodal button:hover {
+    background: #ff6363;
+}
+
+
+
+.signup {
+    position: fixed;
+    display: none;
+}
+
+.signupbackground {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: black;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+.signupmodal {
+    padding: 35px 35px;
+    width: 450px;
+    background: white;
+    border-radius: 35px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    transform: translate(-50%, -50%);
+}
+
+.signup-title {
+    color: #343840;
+    font-size: 22px;
+}
+
+.signupmodal input {
+    margin-top: 15px;
+    border-radius: 15px;
+    border: 1.5px solid #868686;
+    padding: 15px 15px;
+}
+
+.signupmodal button {
+    margin-top: 15px;
+    height: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: #FF8484;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.signupmodal button:hover {
+    background: #ff6363;
+}
+
 
 ::-webkit-scrollbar {
     width: 8px;

@@ -1,10 +1,12 @@
 ﻿using ImgFix.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,6 +14,27 @@ namespace ImgFix.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<AppUser> userManager;
+
+        public HomeController()
+            : this(Startup.UserManagerFactory.Invoke())
+        {
+        }
+
+        public HomeController(UserManager<AppUser> userManager)
+        {
+            this.userManager = userManager;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && userManager != null)
+            {
+                userManager.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -20,34 +43,64 @@ namespace ImgFix.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult LogIn(LogInModel model)
+        public async Task<ActionResult> LogIn(LogInModel model)
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                Response.StatusCode = 400;
+                return Json("Invalid input");
             }
 
-            // Don't do this in production!
-            if (model.Email == "admin@admin.com" && model.Password == "password")
+            var user = await userManager.FindAsync(model.Email, model.Password);
+
+            if (user != null)
             {
-                var identity = new ClaimsIdentity(new[] {
-                new Claim(ClaimTypes.Name, "Ben"),
-                new Claim(ClaimTypes.Email, "a@b.com"),
-                new Claim(ClaimTypes.Country, "England")
-            },
-                    "ApplicationCookie");
+                var identity = await userManager.CreateIdentityAsync(
+                    user, DefaultAuthenticationTypes.ApplicationCookie);
 
-                var ctx = Request.GetOwinContext();
-                var authManager = ctx.Authentication;
+                Request.GetOwinContext().Authentication.SignIn(identity);
 
-                authManager.SignIn(identity);
-
-                return Redirect(GetRedirectUrl(model.ReturnUrl));
+                return Json("Success");
             }
 
             // user authN failed
-            ModelState.AddModelError("", "Invalid email or password");
-            return View();
+            return Json("Invalid email or password");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> Register(RegisterModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = 400;
+                return Json("Invalid password or mail");
+            }
+
+            var user = new AppUser
+            {
+                UserName = model.Email,
+            };
+
+            var result = await userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await SignIn(user);
+                return Json("Success");
+            }
+
+            Response.StatusCode = 400;
+            string error = result.Errors.First();
+
+            return Json(error);
+        }
+
+        private async Task SignIn(AppUser user)
+        {
+            var identity = await userManager.CreateIdentityAsync(
+                user, DefaultAuthenticationTypes.ApplicationCookie);
+            Request.GetOwinContext().Authentication.SignIn(identity);
         }
 
         [AllowAnonymous]
