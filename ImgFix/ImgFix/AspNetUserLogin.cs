@@ -12,12 +12,10 @@ namespace ImgFix
     using System;
     using System.Collections.Generic;
     
-    public partial class Billeder
+    public partial class AspNetUserLogin
     {
-        public int id { get; set; }
-        public string Name { get; set; }
-        public string Mime { get; set; }
-        public byte[] Data { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
         public string UserId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

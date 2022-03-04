@@ -12,14 +12,11 @@ namespace ImgFix
     using System;
     using System.Collections.Generic;
     
-    public partial class Billeder
+    public partial class C__MigrationHistory
     {
-        public int id { get; set; }
-        public string Name { get; set; }
-        public string Mime { get; set; }
-        public byte[] Data { get; set; }
-        public string UserId { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }
