@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmilAskeEksamenModelStoreContainer" CdmEntityContainer="ImgFixEntities">
+    <EntitySetMapping Name="Billeders">
+      <EntityTypeMapping TypeName="EmilAskeEksamenModel.Billeder">
+        <MappingFragment StoreEntitySet="Billeder">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mime" ColumnName="Mime" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
