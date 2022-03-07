@@ -14,15 +14,17 @@ body {
     justify-content: center;
 }
 
-    .imagesection .image {
+    .imagesection .image .image {
         display: flex;
         flex-direction: column;
         height: 70vh;
+        width: 500px;
+        border-radius: 15px;
+        background-size: cover;
+        background-position: center;
+        height: 350px;
+        max-width: 500px;
     }
-
-        .imagesection .image img {
-            height: calc(70vh - 55px);
-        }
 
         .imagesection .image button {
             margin-top: 15px;
@@ -38,6 +40,7 @@ body {
             background-position: 90%;
             background-size: 30px;
             transition: 200ms;
+
         }
 
     .imagesection .text {
