@@ -6,6 +6,7 @@
     <EntitySet Name="AspNetUserClaims" EntityType="EmilAskeEksamenModel.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="EmilAskeEksamenModel.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="EmilAskeEksamenModel.AspNetUser" />
+    <EntitySet Name="Billeders" EntityType="EmilAskeEksamenModel.Billeder" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="EmilAskeEksamenModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -14,14 +15,13 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
     </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="EmilAskeEksamenModel.AspNetUserRoles">
-      <End Role="AspNetRole" EntitySet="AspNetRoles" />
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-    </AssociationSet>
-    <EntitySet Name="Billeders" EntityType="EmilAskeEksamenModel.Billeder" />
     <AssociationSet Name="FK_Billeder_Billeder" Association="EmilAskeEksamenModel.FK_Billeder_Billeder">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="Billeder" EntitySet="Billeders" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="EmilAskeEksamenModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
@@ -81,8 +81,20 @@
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUserClaims" Relationship="EmilAskeEksamenModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="EmilAskeEksamenModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-    <NavigationProperty Name="AspNetRoles" Relationship="EmilAskeEksamenModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
     <NavigationProperty Name="Billeders" Relationship="EmilAskeEksamenModel.FK_Billeder_Billeder" FromRole="AspNetUser" ToRole="Billeder" />
+    <NavigationProperty Name="AspNetRoles" Relationship="EmilAskeEksamenModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="Billeder">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Mime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="EmilAskeEksamenModel.FK_Billeder_Billeder" FromRole="Billeder" ToRole="AspNetUser" />
+    <Property Name="Tekst" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -112,21 +124,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AspNetUserRoles">
-    <End Type="EmilAskeEksamenModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-    <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-  </Association>
-  <EntityType Name="Billeder">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Mime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUser" Relationship="EmilAskeEksamenModel.FK_Billeder_Billeder" FromRole="Billeder" ToRole="AspNetUser" />
-  </EntityType>
   <Association Name="FK_Billeder_Billeder">
     <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
     <End Type="EmilAskeEksamenModel.Billeder" Role="Billeder" Multiplicity="*" />
@@ -138,5 +135,9 @@
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="EmilAskeEksamenModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
 </Schema>

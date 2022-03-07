@@ -175,8 +175,7 @@ namespace ImgFix.Controllers
                 billede.Mime = name.Split('.')[1];
                 billede.Data = fileBytes;
                 billede.Tekst = text;
-                string userID = User.Identity.GetUserId();
-                billede.AspNetUser = db.AspNetUsers.First(x=>x.Id== userID);
+                billede.UserId = User.Identity.GetUserId();
                
                 db.Billeders.Add(billede);
                 db.SaveChanges();

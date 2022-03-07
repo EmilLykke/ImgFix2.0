@@ -70,6 +70,7 @@
     <Property Name="Mime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Data" Type="varbinary(max)" Nullable="false" />
     <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Tekst" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="FK_Billeder_Billeder">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
