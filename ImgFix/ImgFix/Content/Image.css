@@ -14,10 +14,13 @@ body {
     justify-content: center;
 }
 
-    .imagesection .image .image {
+    .imagesection .image {
         display: flex;
         flex-direction: column;
         height: 70vh;
+        
+    }
+    .imagesection .image .image {
         width: 500px;
         border-radius: 15px;
         background-size: cover;
