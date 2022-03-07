@@ -99,12 +99,16 @@ async function sendImage(image, type) {
 
     var request = new XMLHttpRequest();
 
-    request.upload.addEventListener('progress', function (e) {
-        console.log(e.loaded / e.total*100)
+    request.addEventListener('progress', function (e) {
+        console.log(e.total)
     });
 
     request.onload = function (e) {
-        console.log(e.text);
+        if (request.status == 200) {
+            window.location = "/Home/Image/" + request.responseText
+        } else {
+            console.log(request.responseText)
+        }
     }
     request.responseType = "text";
     request.open('post', '/Home/UploadImage');
