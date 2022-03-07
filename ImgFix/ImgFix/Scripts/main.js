@@ -90,7 +90,8 @@ async function sendImage(image, type) {
     /*var base64arr = base64.split(",");*/
     //console.log(base64arr[1]);
     $.post(
-        "/Home/UploadImage", { name: image[0].name, file: base64, type: type }, function (msg) {
+        "/Home/UploadImage", { name: image[0].name, file: base64, type: type }, function (msg, textStatus, request) {
+            
             console.log(msg);
     }
     ).fail(function (error) {

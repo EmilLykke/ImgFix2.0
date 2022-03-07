@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.Routing;
 
 namespace ImgFix.Controllers
 {
@@ -193,11 +193,9 @@ namespace ImgFix.Controllers
                 db.Billeders.Add(billede);
                 db.SaveChanges();
 
+                return Json(billede.id);
+
                 
-                return RedirectToAction("Image", "Home", new
-                {
-                    Id = billede.id
-                });
             }
             else
             {
