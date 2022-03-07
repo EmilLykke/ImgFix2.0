@@ -136,8 +136,8 @@ namespace ImgFix.Controllers
 
             
             ViewBag.Message = "Your application description page.";
-
-            return View(new SingleImage(billede.id, billede.Name, billede.Tekst, billede.Data));
+         
+            return View(new SingleImage(billede.id, billede.Name,billede.Mime, billede.Tekst, Convert.ToBase64String(billede.Data)));
         }
 
         public ActionResult MyImages()
@@ -188,7 +188,7 @@ namespace ImgFix.Controllers
                 Billeder billede = new Billeder();
                 byte[] fileBytes = Convert.FromBase64String(newFile[1]);
                 billede.Name = name;
-                billede.Mime = name.Split('.')[1];
+                billede.Mime = newFile[0];
                 billede.Data = fileBytes;
 
                 billede.Tekst = text;
