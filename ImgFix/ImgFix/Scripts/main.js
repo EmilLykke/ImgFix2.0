@@ -84,8 +84,10 @@ async function sendImage(image, type) {
     $.post(
         "/Home/UploadImage", { name: image[0].name, file: base64, type: type }, function (msg) {
             console.log(msg);
-        }
-    );
+    }
+    ).fail(function (error) {
+        console.log(error)
+    });
 }
 
 async function getBase64(file) {

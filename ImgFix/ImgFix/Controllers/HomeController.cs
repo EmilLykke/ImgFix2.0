@@ -175,7 +175,7 @@ namespace ImgFix.Controllers
                     return Json(e.Message);
                 }
 
-                if(string.IsNullOrEmpty(text))
+                if(string.IsNullOrEmpty(text.Trim()))
                 {
                     Response.StatusCode = 501;
                     return Json("Der mangler tekst i billedet");
@@ -195,8 +195,11 @@ namespace ImgFix.Controllers
                 db.Billeders.Add(billede);
                 db.SaveChanges();
 
-
-                return Json(total);
+                
+                return RedirectToAction("Image", "Home", new
+                {
+                    Id = billede.id
+                });
             }
             else
             {
@@ -239,7 +242,7 @@ namespace ImgFix.Controllers
                 using (StreamReader reader = process.StandardError)
                 {
                     string error = reader.ReadToEnd();
-                    if(error != null)
+                    if(error != "")
                         throw new Exception(error);
 
                 }
