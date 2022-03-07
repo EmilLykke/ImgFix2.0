@@ -91,8 +91,12 @@ async function sendImage(image, type) {
     //console.log(base64arr[1]);
     $.post(
         "/Home/UploadImage", { name: image[0].name, file: base64, type: type }, function (msg, textStatus, request) {
+            if (msg == "") {
+                console.log("No text");
+            } else {
+                console.log(msg);
+            }
             
-            console.log(msg);
     }
     ).fail(function (error) {
         console.log(error)
