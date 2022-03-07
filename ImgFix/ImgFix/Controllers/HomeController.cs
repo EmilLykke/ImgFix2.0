@@ -129,11 +129,15 @@ namespace ImgFix.Controllers
             return returnUrl;
         }
 
-        public ActionResult Image()
+        public ActionResult Image(int id)
         {
+
+            Billeder billede = db.Billeders.FirstOrDefault(x => x.id == id);
+
+            
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return View(new SingleImage(billede.id, billede.Name, billede.Tekst, billede.Data));
         }
 
         public ActionResult MyImages()
