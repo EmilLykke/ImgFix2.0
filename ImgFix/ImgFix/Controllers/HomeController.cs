@@ -62,8 +62,7 @@ namespace ImgFix.Controllers
 
                 return Json("Success");
             }
-
-            // user authN failed
+            Response.StatusCode = 400;
             return Json("Invalid email or password");
         }
 
@@ -92,6 +91,7 @@ namespace ImgFix.Controllers
 
             Response.StatusCode = 400;
             string error = result.Errors.First();
+            Debug.WriteLine(error);
 
             return Json(error);
         }

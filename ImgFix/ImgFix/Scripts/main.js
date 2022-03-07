@@ -11,6 +11,8 @@ $(document).ready(function () {
 });
 
 function signIn() {
+    $(".signinmodal .loader").show();
+    $(".signinmodal .authentication-modal-text").hide();
     var email = $(".signinmodal input[name=username]").val()
     var password = $(".signinmodal input[name=password]").val()
     $.ajax({
@@ -24,15 +26,19 @@ function signIn() {
             console.log(data);
         },
         error: function (data) {
-            $(".signupmodal .error-text").text(data).show();
+            $(".signinmodal .error-text").text(data.responseJSON).show();
             return;
         },
         timeout: 10000,
         contentType: 'application/json; charset=utf-8'
     });
+    $(".signinmodal .loader").hide();
+    $(".signinmodal .authentication-modal-text").show();
 }
 
 function signUp() {
+    $(".signupmodal .loader").show();
+    $(".signupmodal .authentication-modal-text").hide();
     if (!($(".signupmodal input[name=username]").val() != "" && $(".signupmodal input[name=password]").val() != "" && $(".signupmodal input[name=confirmpassword]").val() != "")) {
         $(".signupmodal .error-text").text("Please fill in all fields").show();
         return;
@@ -59,13 +65,15 @@ function signUp() {
         success: function(data) {
             location.reload();
         },
-        error: function(data) {
-            $(".signupmodal .error-text").text(data).show();
+        error: function (data) {
+            $(".signupmodal .error-text").text(data.responseJSON).show();
             return;
         },
         timeout: 10000,
         contentType: 'application/json; charset=utf-8'
     });
+    $(".signupmodal .loader").hide();
+    $(".signupmodal .authentication-modal-text").show();
 }
 
 const validateEmail = (email) => {
