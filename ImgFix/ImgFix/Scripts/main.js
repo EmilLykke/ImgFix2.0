@@ -1,14 +1,46 @@
 $(document).ready(function () {
     $("#uploadButton1").click(function () {
-        $("#imagePicker1").click();
+        if (isRequestAuthenticated) {
+            $("#imagePicker1").click();
+        } else {
+            error("Please login", "Please login to upload an image.")
+        }
     })
 });
 
 $(document).ready(function () {
     $("#uploadButton2").click(function () {
-        $("#imagePicker2").click();
+        if (isRequestAuthenticated) {
+            $("#imagePicker2").click();
+        } else {
+            error("Please login", "Please login to upload an image.")
+        }
     })
+    $('.signinmodal input').keypress(function (e) {
+        if (e.which == 13) {
+            $('.signinmodal button').click();
+        }
+    });
+    $('.signupmodal input').keypress(function (e) {
+        if (e.which == 13) {
+            $('.signupmodal button').click();
+        }
+    });
 });
+
+function error(title, message) {
+    var elem = $("<div class='error' style='transform: translateX(330px)'><div class='errorcontent'><p class='errortitle'>" + title + "</p><p class='errormessage'>" + message + "</p></div ><div class='errorbar'></div></div >").appendTo("#error-section")
+    setTimeout(function () {
+        elem.css('transform', 'translateX(0)')
+        elem.find(".errorbar").css('width', '0px')
+        setTimeout(function () {
+            elem.css('transform', 'translateX(330px)')
+            setTimeout(function () {
+                elem.remove()
+            }, 200)
+        }, 8000)
+    }, 50)
+}
 
 function signIn() {
     $(".signinmodal .loader").show();
@@ -27,13 +59,13 @@ function signIn() {
         },
         error: function (data) {
             $(".signinmodal .error-text").text(data.responseJSON).show();
+            $(".signinmodal .loader").hide();
+            $(".signinmodal .authentication-modal-text").show();
             return;
         },
         timeout: 10000,
         contentType: 'application/json; charset=utf-8'
     });
-    $(".signinmodal .loader").hide();
-    $(".signinmodal .authentication-modal-text").show();
 }
 
 function signUp() {
@@ -67,13 +99,13 @@ function signUp() {
         },
         error: function (data) {
             $(".signupmodal .error-text").text(data.responseJSON).show();
+            $(".signupmodal .loader").hide();
+            $(".signupmodal .authentication-modal-text").show();
             return;
         },
         timeout: 10000,
         contentType: 'application/json; charset=utf-8'
     });
-    $(".signupmodal .loader").hide();
-    $(".signupmodal .authentication-modal-text").show();
 }
 
 const validateEmail = (email) => {
@@ -83,6 +115,8 @@ const validateEmail = (email) => {
 };
 
 async function sendImage(image, type) {
+    $(".status p").text("Uploading image 0%")
+    $(".status").css('opacity', 1);
     //console.log(image[0].name);
     var base64 = await getBase64(image[0])
     //console.log(base64);
@@ -99,15 +133,22 @@ async function sendImage(image, type) {
 
     var request = new XMLHttpRequest();
 
-    request.addEventListener('progress', function (e) {
-        console.log(e.total)
+    request.upload.addEventListener('progress', function (e) {
+        $(".status .statusbar").css('width', ((e.loaded / e.total * 100) * 0.75) + "%")
+        $(".status p").text("Uploading image " + ((e.loaded / e.total * 100) * 0.75 ) + "%")
     });
+    request.addEventListener('progress', function (e) {
+        $(".status .statusbar").css('width', ((e.loaded / e.total * 100) * 0.25 + 75) + "%")
+        $(".status p").text("Uploading image " + ((e.loaded / e.total * 100) * 0.25 + 75 ) + "%")
+    })
 
     request.onload = function (e) {
+        $(".status").css('opacity', 0);
+        $(".status .statusbar").width(0);
         if (request.status == 200) {
             window.location = "/Home/Image/" + request.responseText
         } else {
-            console.log(request.responseText)
+            error("Error", request.responseText)
         }
     }
     request.responseType = "text";
