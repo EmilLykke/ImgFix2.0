@@ -40,7 +40,7 @@
             @if (Request.IsAuthenticated)
             {
                 <a href="@Url.Action("MyImages", "Home")"><button type="button" name="myimages"><h3>My images</h3></button></a>
-                <form action="Home/Logout" style="position: relative; float: right;">
+                <form action="/Home/Logout" style="position: relative; float: right;">
                     <button type="submit" id="actionbutton"><h3>Log Out</h3></button>
                 </form>
             }
