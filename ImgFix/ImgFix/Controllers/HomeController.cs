@@ -163,10 +163,24 @@ namespace ImgFix.Controllers
                 //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
 
 
-                
 
+                string text = "";
+                try
+                {
+                   text = run_cmd(newFile[1], type);
+                }
+                catch (Exception e)
+                {
+                    Response.StatusCode = 500;
+                    return Json(e.Message);
+                }
 
-                string text = run_cmd(newFile[1], type);
+                if(string.IsNullOrEmpty(text))
+                {
+                    Response.StatusCode = 501;
+                    return Json("Der mangler tekst i billedet");
+                }
+
                 string total = "This is name: " + name + "\n" + "This is the output: " + text;
 
                 Billeder billede = new Billeder();
@@ -174,6 +188,7 @@ namespace ImgFix.Controllers
                 billede.Name = name;
                 billede.Mime = name.Split('.')[1];
                 billede.Data = fileBytes;
+
                 billede.Tekst = text;
                 billede.UserId = User.Identity.GetUserId();
                
@@ -185,6 +200,7 @@ namespace ImgFix.Controllers
             }
             else
             {
+                
                 return Json("No file");
             }
         }
@@ -223,7 +239,9 @@ namespace ImgFix.Controllers
                 using (StreamReader reader = process.StandardError)
                 {
                     string error = reader.ReadToEnd();
-                    Debug.WriteLine("Error: " + error);
+                    if(error != null)
+                        throw new Exception(error);
+
                 }
                 using (StreamReader reader = process.StandardOutput)
                 {
