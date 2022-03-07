@@ -96,6 +96,27 @@ async function sendImage(image, type) {
     ).fail(function (error) {
         console.log(error)
     });
+
+
+    var formdata = new FormData();
+
+    formdata.append('name', image[0].name);
+    formdata.append('file', base64);
+    formdata.append('type', type);
+
+    var request = new XMLHttpRequest();
+
+    request.upload.addEventListener('progress', function (e) {
+        console.log(e.loaded / e.total*100)
+    });
+
+    request.onload = function (e) {
+        console.log(e.text);
+    }
+    request.responseType = "text";
+    request.open('post', '/Home/UploadImage');
+    request.timeout = 45000;
+    request.send(formdata);
 }
 
 async function getBase64(file) {
