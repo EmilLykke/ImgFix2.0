@@ -5,7 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="afdbce83152446c19cdef11f716f2938" Name="Diagram1">
-        <EntityTypeShape EntityType="EmilAskeEksamenModel.Billeder" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetRole" Width="1.5" PointX="3.75" PointY="2.5" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="3.625" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="1" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetUser" Width="1.5" PointX="5.5" PointY="0.75" />
+        <AssociationConnector Association="EmilAskeEksamenModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EmilAskeEksamenModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EmilAskeEksamenModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.Billeder" Width="1.5" PointX="1.25" PointY="0.75" />
+        <AssociationConnector Association="EmilAskeEksamenModel.FK_Billeder_Billeder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

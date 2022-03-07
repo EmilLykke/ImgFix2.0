@@ -6,30 +6,36 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace ImgFix.Controllers
 {
     public class HomeController : Controller
     {
         private readonly UserManager<AppUser> userManager;
-
+        private ImgFixEntities db;
         public HomeController()
             : this(Startup.UserManagerFactory.Invoke())
         {
+            this.db = new ImgFixEntities();
         }
 
         public HomeController(UserManager<AppUser> userManager)
         {
+            this.db = new ImgFixEntities();
             this.userManager = userManager;
+            
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing && userManager != null)
             {
+                db.Dispose();
                 userManager.Dispose();
             }
             base.Dispose(disposing);
@@ -143,16 +149,59 @@ namespace ImgFix.Controllers
         {
             //Debug.WriteLine(file);
             //return Json("good");
-            
+            //Debug.WriteLine("name: " + name);
+            //Debug.WriteLine("file: " +file);
+
+            //Debug.WriteLine("type: " + type);
+            string[] newFile = file.Split(',');
+            Debug.WriteLine("base: " + newFile[1]);
+
             if (file != null)
             {
                 //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
-                string text = run_cmd(file, type);
+
+
+
+                string text = "";
+                try
+                {
+                   text = run_cmd(newFile[1], type);
+                }
+                catch (Exception e)
+                {
+                    Response.StatusCode = 500;
+                    return Json(e.Message);
+                }
+
+                if(string.IsNullOrEmpty(text.Trim()))
+                {
+                    Response.StatusCode = 501;
+                    return Json("Der mangler tekst i billedet");
+                }
+
                 string total = "This is name: " + name + "\n" + "This is the output: " + text;
-                return Json(total);
+
+                Billeder billede = new Billeder();
+                byte[] fileBytes = Convert.FromBase64String(newFile[1]);
+                billede.Name = name;
+                billede.Mime = name.Split('.')[1];
+                billede.Data = fileBytes;
+
+                billede.Tekst = text;
+                billede.UserId = User.Identity.GetUserId();
+               
+                db.Billeders.Add(billede);
+                db.SaveChanges();
+
+                
+                return RedirectToAction("Image", "Home", new
+                {
+                    Id = billede.id
+                });
             }
             else
             {
+                
                 return Json("No file");
             }
         }
@@ -191,7 +240,9 @@ namespace ImgFix.Controllers
                 using (StreamReader reader = process.StandardError)
                 {
                     string error = reader.ReadToEnd();
-                    Debug.WriteLine("Error: " + error);
+                    if(error != "")
+                        throw new Exception(error);
+
                 }
                 using (StreamReader reader = process.StandardOutput)
                 {

@@ -12,15 +12,18 @@ namespace ImgFix
     using System;
     using System.Collections.Generic;
     
-    public partial class Billeder
+    public partial class AspNetRole
     {
-        public int id { get; set; }
-        public string Name { get; set; }
-        public string Mime { get; set; }
-        public byte[] Data { get; set; }
-        public string UserId { get; set; }
-        public string Tekst { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AspNetRole()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
     
-        public virtual AspNetUser AspNetUser { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
