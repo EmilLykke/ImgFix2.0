@@ -142,9 +142,9 @@ namespace ImgFix.Controllers
 
         public ActionResult MyImages()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var userID = User.Identity.GetUserId();
+            IQueryable<Billeder> billeder = db.Billeders.Where(x => x.UserId == userID);
+            return View(billeder);
         }
 
         [HttpPost]

@@ -4,9 +4,9 @@
     ViewBag.Title = "Image Page";
 }
 
-
+@Styles.Render("~/Content/Image")
 <section class="imagesection">
-    <div class="image" >
+    <div class="image">
         <div class="image" style="background-image: url('@Model.Mime,@Model.Data')"></div>
         <button type="button" name="button">Download</button>
     </div>
@@ -18,7 +18,7 @@
                     @Model.Text
                 </p>
             </div>
-            
+
         </div>
         <button type="button" name="button">Scan another</button>
     </div>

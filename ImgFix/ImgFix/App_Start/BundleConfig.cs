@@ -25,10 +25,17 @@ namespace ImgFix
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/Main.css",
-                      "~/Content/MyImages.css",
-                      "~/Content/Image.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/MyImages").Include(
+              "~/Content/MyImages.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Image").Include(
+              "~/Content/Image.css"));
+
+
+            bundles.Add(new StyleBundle("~/Content/Main").Include(
+              "~/Content/Main.css"));
         }
     }
 }
