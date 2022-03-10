@@ -42,6 +42,14 @@ function error(title, message) {
     }, 50)
 }
 
+function downloadMyImage(element) {
+    var a = document.createElement("a"); //Create <a>
+    console.log(element.closest(".image").find(".image-data").attr("src"))
+    a.href = element.closest(".image").find(".image-data").attr("src")
+    a.download = "Image.png"; //File name Here
+    a.click(); //Downloaded file
+}
+
 function signIn() {
     $(".signinmodal .loader").show();
     $(".signinmodal .authentication-modal-text").hide();
