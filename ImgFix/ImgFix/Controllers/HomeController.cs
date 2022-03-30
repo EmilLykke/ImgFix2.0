@@ -148,6 +148,12 @@ namespace ImgFix.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetDetalils()
+        {
+            return View();
+        }
+
+        [HttpPost]
         [AllowAnonymous]
         public ActionResult UploadImage(string name, string file, string type)
         {

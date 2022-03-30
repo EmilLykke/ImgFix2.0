@@ -99,3 +99,144 @@ button[name=delete] {
     button[name=delete]:hover {
         background: #ff6363;
     }
+
+.image-details {
+    width: 70%;
+    max-width: 300px;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0; 
+    z-index: 100;
+    background: white;
+}
+
+.image-details .top-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px 20px 0px 20px;
+}
+
+.image-details .top-info h1 {
+    color: black;
+    font-size: 22px;
+}
+
+.image-details .top-info h2 {
+    color: black;
+    font-size: 18px;
+}
+
+.image-details .top-info svg {
+    fill: black;
+    width: 30px;
+    height: 30px;
+}
+
+.image-details .divider {
+    width: 100%;
+}
+
+.image-details .divider .tab {
+    width: 50%;
+    position: relative;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #4d4d4d;   
+    cursor: pointer;
+}
+
+.image-details .divider .tab svg {
+    fill: #4d4d4d;
+    width: 23px;
+    height: 23px;
+    margin-bottom: 6px;
+}
+
+.image-details .divider .tab h2 {
+    font-size: 16px;
+    color: #4d4d4d;
+}
+
+
+.image-details .divider .tab.active {
+    border-bottom: 2px solid black;
+}
+
+.image-details .divider .tab.active svg {
+    fill: black;
+}
+
+.image-details .divider .tab.active h2 {
+    font-weight: 700;
+    color: black;
+}
+
+.image-details .divider .tab:hover  svg{
+    fill: black;
+}
+
+.image-details .divider .tab:hover {
+    border-bottom: 2px solid grey;
+}
+
+.image-details .content {
+    width: 100%
+}
+
+.image-details .content .content-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.image-details .content .content-item.sharing .search {
+    width: 100%;
+    position: relative;
+}
+
+.image-details .content .content-item.sharing input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid grey;
+}
+
+.image-details .content .content-item.sharing input:focus {
+    border: 1px solid black;
+    border-radius: 5px 5px 0 0;
+    outline: none;
+}
+
+
+.image-details .content .content-item.sharing .search .search-result {
+    display: none;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    max-height: 200px;
+    overflow: auto;
+    border-radius: 0 0 10px 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-details .content .content-item.sharing .loader-wrapper {
+    padding: 20px 0px;
+}
+
+    .image-details .content .content-item.sharing input:focus + .search-result {
+        display: flex;
+    }

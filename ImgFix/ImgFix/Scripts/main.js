@@ -43,10 +43,11 @@ function error(title, message) {
 }
 
 function downloadMyImage(element) {
+    var imageData = element.closest(".image").find(".image-data")
     var a = document.createElement("a"); //Create <a>
     console.log(element.closest(".image").find(".image-data").attr("src"))
-    a.href = element.closest(".image").find(".image-data").attr("src")
-    a.download = "Image.png"; //File name Here
+    a.href = imageData.attr("src")
+    a.download = imageData.data("name")
     a.click(); //Downloaded file
 }
 
@@ -63,9 +64,13 @@ function signIn() {
         }),
         type: 'POST',
         success: function (data) {
+            console.log(data)
+            console.log("Shiet")
             location.reload();
         },
         error: function (data) {
+            console.log(data);
+            console.log("Fuck");
             $(".signinmodal .error-text").text(data.responseJSON).show();
             $(".signinmodal .loader").hide();
             $(".signinmodal .authentication-modal-text").show();
