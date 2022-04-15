@@ -108,8 +108,25 @@ button[name=delete] {
     right: 0;
     top: 0; 
     z-index: 100;
+    display: grid;
     background: white;
+    transition: 200ms;
 }
+
+.image-details .main-details {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+}
+
+    .image-details .details-loader {
+        width: 50px;
+        place-self: center; 
+        height: 50px;
+        border-top: 5px solid #FF8484;
+    }
 
 .image-details .top-info {
     display: flex;
@@ -133,24 +150,31 @@ button[name=delete] {
     fill: black;
     width: 30px;
     height: 30px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.image-details .top-info svg:hover {
+    transform: scale(1.1)
 }
 
 .image-details .divider {
     width: 100%;
+    display: flex;
 }
 
-.image-details .divider .tab {
-    width: 50%;
-    position: relative;
-    float: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #4d4d4d;   
-    cursor: pointer;
-}
+    .image-details .divider .tab {
+        width: 50%;
+        position: relative;
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #dcdcdc;
+        cursor: pointer;    
+    }
 
 .image-details .divider .tab svg {
     fill: #4d4d4d;
@@ -182,12 +206,16 @@ button[name=delete] {
     fill: black;
 }
 
-.image-details .divider .tab:hover {
-    border-bottom: 2px solid grey;
-}
+    .image-details .divider .tab.inactive:hover {
+        border-bottom: 2px solid #dcdcdc;
+    }
 
 .image-details .content {
-    width: 100%
+    width: 100%;
+    overflow: auto;
+    flex-direction: column;
+    display: flex;
+    flex-grow: 1;
 }
 
 .image-details .content .content-item {
@@ -196,11 +224,14 @@ button[name=delete] {
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    flex-grow: 1;
+    overflow: auto;
 }
 
 .image-details .content .content-item.sharing .search {
     width: 100%;
     position: relative;
+    margin-bottom: 10px px;
 }
 
 .image-details .content .content-item.sharing input {
@@ -220,6 +251,7 @@ button[name=delete] {
 
 .image-details .content .content-item.sharing .search .search-result {
     display: none;
+    background: white;
     border-right: 1px solid black;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
@@ -237,6 +269,107 @@ button[name=delete] {
     padding: 20px 0px;
 }
 
-    .image-details .content .content-item.sharing input:focus + .search-result {
+.image-details .content .content-item.sharing input:focus + .search-result {
+    display: flex;
+}
+
+.image-details .content .content-item.sharing input:active + .search-result {
+    display: flex;
+}
+
+.image-details .search-result .person {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    background: none;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.image-details .search-result .person .initials {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+}
+
+.image-details .search-result .person p {
+    margin: 0;
+}
+
+.image-details .search-result .person h1 {
+    margin: 0;
+    margin-right: 5px;
+    text-align: center;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 100%;
+    background: #FF8484;
+    color: white;
+}
+
+.image-details .search-result .person:hover {
+    background: #eeeded ;
+}
+
+.image-details .shared-people {
+    width: 100%;
+    overflow: auto;
+}
+
+.image-details .shared-people .owner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    background: none;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+    .image-details .shared-people .owner .initials {
         display: flex;
+        overflow: hidden;
+        align-items: center;
     }
+
+    .image-details .shared-people .owner p {
+        margin: 0;
+    }
+
+    .image-details .shared-people .owner h1 {
+        margin: 0;
+        margin-right: 5px;
+        text-align: center;
+        height: 28px;
+        width: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 100%;
+        background: #FF8484;
+        color: white;
+    }
+
+.image-details .shared-people .owner svg {
+    fill: #212529;
+    height: 20px;
+    width: 20px;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.image-details .shared-people .owner svg:hover {
+    transform: scale(1.1)
+}

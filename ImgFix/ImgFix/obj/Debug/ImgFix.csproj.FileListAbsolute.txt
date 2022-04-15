@@ -72,7 +72,6 @@ C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\System.Web.Web
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Newtonsoft.Json.xml
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Antlr3.Runtime.pdb
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.AssemblyReference.cache
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.CoreCompileInputs.cache
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.CopyComplete
 C:\Users\askev\Source\Repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.dll
@@ -507,3 +506,6 @@ C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.xml
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Security.xml
 C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.Migrations.Test.resources
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.GenerateResource.cache
+C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.AssemblyReference.cache

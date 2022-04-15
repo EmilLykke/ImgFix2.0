@@ -21,6 +21,9 @@ namespace ImgFix
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.Billeders = new HashSet<Billeder>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.Messages = new HashSet<Message>();
+            this.Shares = new HashSet<Share>();
+            this.Shares1 = new HashSet<Share>();
         }
     
         public string Id { get; set; }
@@ -35,6 +38,7 @@ namespace ImgFix
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
+        public byte[] ProfilePicture { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -44,5 +48,11 @@ namespace ImgFix
         public virtual ICollection<Billeder> Billeders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Messages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Share> Shares { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Share> Shares1 { get; set; }
     }
 }

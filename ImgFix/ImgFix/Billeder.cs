@@ -14,6 +14,13 @@ namespace ImgFix
     
     public partial class Billeder
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Billeder()
+        {
+            this.Messages = new HashSet<Message>();
+            this.Shares = new HashSet<Share>();
+        }
+    
         public int id { get; set; }
         public string Name { get; set; }
         public string Mime { get; set; }
@@ -22,5 +29,9 @@ namespace ImgFix
         public string Tekst { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Messages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Share> Shares { get; set; }
     }
 }

@@ -60,6 +60,7 @@
     <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ProfilePicture" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Billeder">
     <Key>
@@ -71,6 +72,25 @@
     <Property Name="Data" Type="varbinary(max)" Nullable="false" />
     <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Tekst" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="message" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="userId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="billedeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Share">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ownerId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="shareId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="billedeId" Type="int" />
   </EntityType>
   <Association Name="FK_Billeder_Billeder">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
@@ -140,6 +160,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Message_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Billeder">
+    <End Role="Billeder" Type="Self.Billeder" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billeder">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="billedeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Share" Type="Self.Share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Share">
+        <PropertyRef Name="shareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_AspNetUsers1">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Share" Type="Self.Share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Share">
+        <PropertyRef Name="ownerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_Billeder">
+    <End Role="Billeder" Type="Self.Billeder" Multiplicity="0..1" />
+    <End Role="Share" Type="Self.Share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billeder">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Share">
+        <PropertyRef Name="billedeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="EmilAskeEksamenModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -148,6 +228,8 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Billeder" EntityType="Self.Billeder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Share" EntityType="Self.Share" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Billeder_Billeder" Association="Self.FK_Billeder_Billeder">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Billeder" EntitySet="Billeder" />
@@ -167,6 +249,26 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_AspNetUsers" Association="Self.FK_Message_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Billeder" Association="Self.FK_Message_Billeder">
+      <End Role="Billeder" EntitySet="Billeder" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_AspNetUsers" Association="Self.FK_Share_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Share" EntitySet="Share" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_AspNetUsers1" Association="Self.FK_Share_AspNetUsers1">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Share" EntitySet="Share" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_Billeder" Association="Self.FK_Share_Billeder">
+      <End Role="Billeder" EntitySet="Billeder" />
+      <End Role="Share" EntitySet="Share" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

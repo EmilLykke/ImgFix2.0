@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="afdbce83152446c19cdef11f716f2938" Name="Diagram1">
+      <Diagram DiagramId="afdbce83152446c19cdef11f716f2938" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="EmilAskeEksamenModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetRole" Width="1.5" PointX="3.75" PointY="2.5" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetRole" Width="1.5" PointX="3.125" PointY="2.5" />
         <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="3.625" />
         <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="1" />
         <EntityTypeShape EntityType="EmilAskeEksamenModel.AspNetUser" Width="1.5" PointX="5.5" PointY="0.75" />
@@ -15,6 +15,13 @@
         <AssociationConnector Association="EmilAskeEksamenModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="EmilAskeEksamenModel.Billeder" Width="1.5" PointX="1.25" PointY="0.75" />
         <AssociationConnector Association="EmilAskeEksamenModel.FK_Billeder_Billeder" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.Message" Width="1.5" PointX="10.75" PointY="2" />
+        <EntityTypeShape EntityType="EmilAskeEksamenModel.Share" Width="1.5" PointX="7.75" PointY="7.25" />
+        <AssociationConnector Association="EmilAskeEksamenModel.FK_Message_AspNetUsers" />
+        <AssociationConnector Association="EmilAskeEksamenModel.FK_Share_AspNetUsers" />
+        <AssociationConnector Association="EmilAskeEksamenModel.FK_Share_AspNetUsers1" />
+        <AssociationConnector Association="EmilAskeEksamenModel.FK_Message_Billeder" />
+        <AssociationConnector Association="EmilAskeEksamenModel.FK_Share_Billeder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

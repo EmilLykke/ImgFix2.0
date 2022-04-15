@@ -31,5 +31,7 @@ namespace ImgFix
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Billeder> Billeders { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Share> Shares { get; set; }
     }
 }

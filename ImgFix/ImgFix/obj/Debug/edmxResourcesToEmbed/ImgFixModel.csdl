@@ -23,6 +23,28 @@
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Messages" EntityType="EmilAskeEksamenModel.Message" />
+    <EntitySet Name="Shares" EntityType="EmilAskeEksamenModel.Share" />
+    <AssociationSet Name="FK_Message_AspNetUsers" Association="EmilAskeEksamenModel.FK_Message_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_AspNetUsers" Association="EmilAskeEksamenModel.FK_Share_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Share" EntitySet="Shares" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_AspNetUsers1" Association="EmilAskeEksamenModel.FK_Share_AspNetUsers1">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Share" EntitySet="Shares" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Billeder" Association="EmilAskeEksamenModel.FK_Message_Billeder">
+      <End Role="Billeder" EntitySet="Billeders" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_Billeder" Association="EmilAskeEksamenModel.FK_Share_Billeder">
+      <End Role="Billeder" EntitySet="Billeders" />
+      <End Role="Share" EntitySet="Shares" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -83,6 +105,10 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="EmilAskeEksamenModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
     <NavigationProperty Name="Billeders" Relationship="EmilAskeEksamenModel.FK_Billeder_Billeder" FromRole="AspNetUser" ToRole="Billeder" />
     <NavigationProperty Name="AspNetRoles" Relationship="EmilAskeEksamenModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+    <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Messages" Relationship="EmilAskeEksamenModel.FK_Message_AspNetUsers" FromRole="AspNetUser" ToRole="Message" />
+    <NavigationProperty Name="Shares" Relationship="EmilAskeEksamenModel.FK_Share_AspNetUsers" FromRole="AspNetUser" ToRole="Share" />
+    <NavigationProperty Name="Shares1" Relationship="EmilAskeEksamenModel.FK_Share_AspNetUsers1" FromRole="AspNetUser" ToRole="Share" />
   </EntityType>
   <EntityType Name="Billeder">
     <Key>
@@ -95,6 +121,8 @@
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="EmilAskeEksamenModel.FK_Billeder_Billeder" FromRole="Billeder" ToRole="AspNetUser" />
     <Property Name="Tekst" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Messages" Relationship="EmilAskeEksamenModel.FK_Message_Billeder" FromRole="Billeder" ToRole="Message" />
+    <NavigationProperty Name="Shares" Relationship="EmilAskeEksamenModel.FK_Share_Billeder" FromRole="Billeder" ToRole="Share" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -139,5 +167,89 @@
   <Association Name="AspNetUserRoles">
     <End Type="EmilAskeEksamenModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="message1" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="userId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="billedeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="EmilAskeEksamenModel.FK_Message_AspNetUsers" FromRole="Message" ToRole="AspNetUser" />
+    <NavigationProperty Name="Billeder" Relationship="EmilAskeEksamenModel.FK_Message_Billeder" FromRole="Message" ToRole="Billeder" />
+  </EntityType>
+  <EntityType Name="Share">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ownerId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="shareId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="EmilAskeEksamenModel.FK_Share_AspNetUsers" FromRole="Share" ToRole="AspNetUser" />
+    <NavigationProperty Name="AspNetUser1" Relationship="EmilAskeEksamenModel.FK_Share_AspNetUsers1" FromRole="Share" ToRole="AspNetUser" />
+    <Property Name="billedeId" Type="Int32" />
+    <NavigationProperty Name="Billeder" Relationship="EmilAskeEksamenModel.FK_Share_Billeder" FromRole="Share" ToRole="Billeder" />
+  </EntityType>
+  <Association Name="FK_Message_AspNetUsers">
+    <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="EmilAskeEksamenModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_AspNetUsers">
+    <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="EmilAskeEksamenModel.Share" Role="Share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Share">
+        <PropertyRef Name="shareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_AspNetUsers1">
+    <End Type="EmilAskeEksamenModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="EmilAskeEksamenModel.Share" Role="Share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Share">
+        <PropertyRef Name="ownerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Billeder">
+    <End Type="EmilAskeEksamenModel.Billeder" Role="Billeder" Multiplicity="1" />
+    <End Type="EmilAskeEksamenModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billeder">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="billedeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_Billeder">
+    <End Type="EmilAskeEksamenModel.Billeder" Role="Billeder" Multiplicity="0..1" />
+    <End Type="EmilAskeEksamenModel.Share" Role="Share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billeder">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Share">
+        <PropertyRef Name="billedeId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>
