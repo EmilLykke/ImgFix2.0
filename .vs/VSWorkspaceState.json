@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ImgFix",
+    "\\ImgFix\\ImgFix",
+    "\\ImgFix\\ImgFix\\Controllers"
   ],
-  "SelectedNode": "\\ImgFix.sln",
+  "SelectedNode": "\\ImgFix\\ImgFix\\ImgFixModel.edmx",
   "PreviewInSolutionExplorer": false
 }
