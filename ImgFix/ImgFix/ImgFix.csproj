@@ -303,9 +303,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImgFixModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Message.cs">
+      <DependentUpon>ImgFixModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203301100436_Test.cs" />
+    <Compile Include="Migrations\202203301100436_Test.designer.cs">
+      <DependentUpon>202203301100436_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ImageDetails.cs" />
     <Compile Include="Models\ImgTBF.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\SingleImage.cs" />
+    <Compile Include="Models\UserSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Share.cs">
+      <DependentUpon>ImgFixModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Content Include="Content\Images\download.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -516,6 +530,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202203301100436_Test.resx">
+      <DependentUpon>202203301100436_Test.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

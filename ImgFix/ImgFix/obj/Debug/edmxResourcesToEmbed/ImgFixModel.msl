@@ -41,6 +41,7 @@
     <EntitySetMapping Name="AspNetUsers">
       <EntityTypeMapping TypeName="EmilAskeEksamenModel.AspNetUser">
         <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
@@ -56,6 +57,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Billeders">
+      <EntityTypeMapping TypeName="EmilAskeEksamenModel.Billeder">
+        <MappingFragment StoreEntitySet="Billeder">
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Mime" ColumnName="Mime" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="EmilAskeEksamenModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetUser">
         <ScalarProperty Name="Id" ColumnName="UserId" />
@@ -64,13 +77,23 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Billeders">
-      <EntityTypeMapping TypeName="EmilAskeEksamenModel.Billeder">
-        <MappingFragment StoreEntitySet="Billeder">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Data" ColumnName="Data" />
-          <ScalarProperty Name="Mime" ColumnName="Mime" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="EmilAskeEksamenModel.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="billedeId" ColumnName="billedeId" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="message1" ColumnName="message" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shares">
+      <EntityTypeMapping TypeName="EmilAskeEksamenModel.Share">
+        <MappingFragment StoreEntitySet="Share">
+          <ScalarProperty Name="billedeId" ColumnName="billedeId" />
+          <ScalarProperty Name="shareId" ColumnName="shareId" />
+          <ScalarProperty Name="ownerId" ColumnName="ownerId" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

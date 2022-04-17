@@ -9,13 +9,15 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <section id="error-section">
+    </section>
     <section class="signin">
         <div class="signinmodal">
-            <h3 class="error-text" style="display: none"></h3>
             <h1 class="signin-title">Sign in</h1>
-            <input type="text" name="username" placeholder="Email" value="">
-            <input type="password" name="password" placeholder="Password" value="">
-            <button type="button" name="button" onclick="signIn()">Sign in<div class="loader" style="display:none;"></div></button>
+            <h3 class="error-text" style="display: none"></h3>
+            <input type="text" autocomplete="email" name="username" placeholder="Email" value="">
+            <input type="password" autocomplete="password" name="password" placeholder="Password" value="">
+            <button type="submit" name="button" onclick="signIn()"><p class="authentication-modal-text">Sign in</p><div class="loader" style="display: none;"></div></button>
         </div>
         <div class="signinbackground" onclick="$(this).parent().fadeOut(200)"></div>
     </section>
@@ -24,10 +26,10 @@
         <div class="signupmodal">
             <h1 class="signup-title">Sign up</h1>
             <h3 class="error-text" style="display: none"></h3>
-            <input type="text" name="username" placeholder="Email" value="">
-            <input type="password" name="password" placeholder="Password" value="">
-            <input type="password" name="confirmpassword" placeholder="Confirm password" value="">
-            <button type="button" name="button" onclick="signUp()">Sign up</button>
+            <input type="text" autocomplete="email" name="username" placeholder="Email" value="">
+            <input type="password" autocomplete="password" name="password" placeholder="Password" value="">
+            <input type="password" autocomplete="password" name="confirmpassword" placeholder="Confirm password" value="">
+            <button type="submit" name="button" onclick="signUp()"><p class="authentication-modal-text">Sign up</p><div class="loader" style="display: none;"></div></button>
         </div>
         <div class="signupbackground" onclick="$(this).parent().fadeOut(200)"></div>
     </section>
@@ -38,7 +40,7 @@
             @if (Request.IsAuthenticated)
             {
                 <a href="@Url.Action("MyImages", "Home")"><button type="button" name="myimages"><h3>My images</h3></button></a>
-                <form action="Home/Logout" style="position: relative; float: right;">
+                <form action="/Home/Logout" style="position: relative; float: right;">
                     <button type="submit" id="actionbutton"><h3>Log Out</h3></button>
                 </form>
             }
@@ -55,5 +57,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        var isRequestAuthenticated = @Request.IsAuthenticated.ToString().ToLower();
+    </script>
 </body>
 </html>

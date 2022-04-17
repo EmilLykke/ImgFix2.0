@@ -24,6 +24,58 @@ button {
     border: none;
 }
 
+#error-section {
+    position: fixed;
+    width: 300px;
+    height: auto;
+    right: 20px;
+    z-index: 101;
+    bottom: 15px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+}
+
+.error {
+    width: 100%;
+    background: #ff6060;
+    color: white;
+    margin-top: 15px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: auto 5px;
+    transition: 200ms;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.errorcontent {
+    padding: 0 15px 0 15px;
+    margin: 5px 0 12px 0;
+    grid-row: 1;
+}
+
+.errortitle {
+    grid-row: 1;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.errormessage {
+    grid-row: 2;
+    font-size: 15px;
+}
+
+.errorbar {
+    grid-row: 2;
+    height: 100%;
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    transition: 8000ms linear;
+}
+
 .header {
     display: flex;
     flex-direction: row;
@@ -83,6 +135,29 @@ button[name=myimages]:hover {
     color: #343840;
 }
 
+.authentication-modal-text {
+margin: 0;
+}
+
+.loader {   
+    border: 5px solid transparent; /* Light grey */
+    border-top: 5px solid white; /* Blue */
+    border-radius: 50%;
+    height: 70%;
+    aspect-ratio: 1;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .signin .error-text, .signup .error-text {
     margin-top: 5px;
     color: #fa3e3e;
@@ -140,6 +215,9 @@ button[name=myimages]:hover {
     font-size: 20px;
     cursor: pointer;
     transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .signinmodal button:hover {
@@ -201,6 +279,9 @@ button[name=myimages]:hover {
     font-size: 20px;
     cursor: pointer;
     transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .signupmodal button:hover {

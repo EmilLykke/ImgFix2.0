@@ -1,5 +1,6 @@
 ﻿using ImgFix.Models;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.Routing;
 
 namespace ImgFix.Controllers
 {
@@ -68,8 +69,6 @@ namespace ImgFix.Controllers
 
                 return Json("Success");
             }
-
-            // user authN failed
             Response.StatusCode = 400;
             return Json("Invalid email or password");
         }
@@ -98,12 +97,84 @@ namespace ImgFix.Controllers
             }
 
             Response.StatusCode = 400;
-            string error = "";
-            error += result.Errors.First();
+            string error = result.Errors.First();
+            Debug.WriteLine(error);
 
             return Json(error);
         }
+        [HttpPost]
+        public ActionResult SearchPeople(string query)
+        {
+            IEnumerable<AspNetUser> people = db.AspNetUsers.Where(e => e.UserName.Contains(query)).AsEnumerable();
+            if(people.Any())
+            {
+                UserSearchResult Users = new UserSearchResult(people);
+                var json = JsonConvert.SerializeObject(Users);
+                return Json(Users);
+            } else
+            {
+                Response.StatusCode = 400;
+                return Json("empty");   
+            }
+        }
+        [HttpPost]
+        public ActionResult DelShare(int id)
+        {
+            string currentId = User.Identity.GetUserId();
+            if(db.Shares.Where(e => e.ownerId == currentId || e.shareId == currentId).Any())
+            {
+                Share deling = db.Shares.First(e => e.ownerId == currentId || e.shareId == currentId);
+                db.Shares.Remove(deling);
+                db.SaveChanges();
+                return Json("ok");
+            } else
+            {
+                Response.StatusCode = 403;
+                return Json("You do not have access to this image");
+            }
+        }
 
+        [HttpPost]
+        public ActionResult AddShare(int imgId, string userId)
+        {
+            string currentId = User.Identity.GetUserId();
+            string username = db.AspNetUsers.First(e => e.Id == userId).UserName;
+            Billeder Billede = db.Billeders.FirstOrDefault(e => (e.UserId == currentId || e.Shares.Any(x => x.shareId == currentId)) && e.id == imgId);
+            if (Billede != null)
+            {
+                if(db.Billeders.Where(e => (e.UserId == userId || e.Shares.Any(x => x.shareId == userId)) && e.id == imgId).Any())
+                {
+                    Response.StatusCode = 500;
+                    return Json("This person already have access to this image");
+                } else
+                {
+                    Share deling = db.Shares.Add(new Share { shareId = userId, billedeId = imgId, ownerId = currentId });
+                    db.SaveChanges();
+                    return Json(new { id = deling.id, username = username });
+                }
+            } else
+            {
+                Response.StatusCode = 403;
+                return Json("No access to any image with given id");
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult ImageDetails(int? id) {
+            var userId = User.Identity.GetUserId();
+            Billeder billede = db.Billeders.DefaultIfEmpty(null).FirstOrDefault(e => e.id == id && (e.UserId == userId || e.Shares.Any(x => x.shareId == userId)));
+            if(billede != null)
+            {
+                Models.ImageDetails detaljer = new Models.ImageDetails(billede);
+                return Json(detaljer);
+            }
+            else
+            {
+                Response.StatusCode = 404;
+                return Json("No image with given id");
+            }
+        }
         private async Task SignIn(AppUser user)
         {
             var identity = await userManager.CreateIdentityAsync(
@@ -131,17 +202,27 @@ namespace ImgFix.Controllers
             return returnUrl;
         }
 
-        public ActionResult Image()
+        public ActionResult Image(int id)
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+            Billeder billede = db.Billeders.FirstOrDefault(x => x.id == id);
+
+            
+            ViewBag.Message = "Your application description page.";
+         
+            return View(new SingleImage(billede.id, billede.Name,billede.Mime, billede.Tekst, Convert.ToBase64String(billede.Data)));
         }
 
         public ActionResult MyImages()
         {
-            ViewBag.Message = "Your contact page.";
+            var userID = User.Identity.GetUserId();
+            IQueryable<Billeder> billeder = db.Billeders.Where(x => x.UserId == userID || x.Shares.Any(e => e.shareId == userID));
+            return View(billeder);
+        }
 
+        [HttpPost]
+        public ActionResult GetDetalils(int id)
+        {
             return View();
         }
 
@@ -149,40 +230,40 @@ namespace ImgFix.Controllers
         [AllowAnonymous]
         public ActionResult UploadImage(string name, string file, string type)
         {
-            //Debug.WriteLine(file);
-            //return Json("good");
-            //Debug.WriteLine("name: " + name);
-            //Debug.WriteLine("file: " +file);
-
-            //Debug.WriteLine("type: " + type);
+         
             string[] newFile = file.Split(',');
-            Debug.WriteLine("base: " + newFile[1]);
 
             if (file != null)
             {
-                //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
+                string text = "";
+                try
+                {
+                   text = run_cmd(newFile[1], type);
+                }
+                catch (Exception e)
+                {
+                    Response.StatusCode = 500;
+                    return Json(e.Message);
+                }
 
-
-                
-
-
-                string text = run_cmd(newFile[1], type);
-                string total = "This is name: " + name + "\n" + "This is the output: " + text;
-
+                if(string.IsNullOrEmpty(text.Trim()))
+                {
+                    Response.StatusCode = 501;
+                    return Json("Der mangler tekst i billedet");
+                }
                 Billeder billede = new Billeder();
                 byte[] fileBytes = Convert.FromBase64String(newFile[1]);
                 billede.Name = name;
-                billede.Mime = name.Split('.')[1];
+                billede.Mime = newFile[0];
                 billede.Data = fileBytes;
+
                 billede.Tekst = text;
-                string userID = User.Identity.GetUserId();
-                billede.AspNetUser = db.AspNetUsers.First(x=>x.Id== userID);
+                billede.UserId = User.Identity.GetUserId();
                
                 db.Billeders.Add(billede);
                 db.SaveChanges();
 
-
-                return Json(total);
+                return Json(billede.id);
             }
             else
             {
@@ -202,7 +283,7 @@ namespace ImgFix.Controllers
                 sw.Close();
             }
             ProcessStartInfo start = new ProcessStartInfo();
-            Directory.GetCurrentDirectory();
+           // Directory.GetCurrentDirectory();
             start.FileName = "python";
             if (type == "adaptive")
             {
@@ -212,8 +293,6 @@ namespace ImgFix.Controllers
             {
                 start.Arguments = (Server.MapPath("~/Images/imageFix2.py")) + " " + myTempFile;
             }
-            
-            Debug.WriteLine(start.Arguments);
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.RedirectStandardError = true;
@@ -224,7 +303,8 @@ namespace ImgFix.Controllers
                 using (StreamReader reader = process.StandardError)
                 {
                     string error = reader.ReadToEnd();
-                    Debug.WriteLine("Error: " + error);
+                    if(error != "")
+                        throw new Exception(error);
                 }
                 using (StreamReader reader = process.StandardOutput)
                 {
@@ -233,10 +313,6 @@ namespace ImgFix.Controllers
                 }
             }
             return output;
-
-
-
-
         }
     }
 }
