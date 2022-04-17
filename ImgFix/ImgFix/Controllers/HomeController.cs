@@ -230,21 +230,11 @@ namespace ImgFix.Controllers
         [AllowAnonymous]
         public ActionResult UploadImage(string name, string file, string type)
         {
-            //Debug.WriteLine(file);
-            //return Json("good");
-            //Debug.WriteLine("name: " + name);
-            //Debug.WriteLine("file: " +file);
-
-            //Debug.WriteLine("type: " + type);
+         
             string[] newFile = file.Split(',');
-            Debug.WriteLine("base: " + newFile[1]);
 
             if (file != null)
             {
-                //file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
-
-
-
                 string text = "";
                 try
                 {
@@ -261,9 +251,6 @@ namespace ImgFix.Controllers
                     Response.StatusCode = 501;
                     return Json("Der mangler tekst i billedet");
                 }
-
-                string total = "This is name: " + name + "\n" + "This is the output: " + text;
-
                 Billeder billede = new Billeder();
                 byte[] fileBytes = Convert.FromBase64String(newFile[1]);
                 billede.Name = name;
@@ -277,12 +264,9 @@ namespace ImgFix.Controllers
                 db.SaveChanges();
 
                 return Json(billede.id);
-
-                
             }
             else
             {
-                
                 return Json("No file");
             }
         }
@@ -299,7 +283,7 @@ namespace ImgFix.Controllers
                 sw.Close();
             }
             ProcessStartInfo start = new ProcessStartInfo();
-            Directory.GetCurrentDirectory();
+           // Directory.GetCurrentDirectory();
             start.FileName = "python";
             if (type == "adaptive")
             {
@@ -309,8 +293,6 @@ namespace ImgFix.Controllers
             {
                 start.Arguments = (Server.MapPath("~/Images/imageFix2.py")) + " " + myTempFile;
             }
-            
-            Debug.WriteLine(start.Arguments);
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.RedirectStandardError = true;
@@ -323,7 +305,6 @@ namespace ImgFix.Controllers
                     string error = reader.ReadToEnd();
                     if(error != "")
                         throw new Exception(error);
-
                 }
                 using (StreamReader reader = process.StandardOutput)
                 {
@@ -332,10 +313,6 @@ namespace ImgFix.Controllers
                 }
             }
             return output;
-
-
-
-
         }
     }
 }

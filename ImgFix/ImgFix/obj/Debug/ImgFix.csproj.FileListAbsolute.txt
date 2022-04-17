@@ -509,3 +509,5 @@ C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\bin\Microsoft.Owin.Security.Cookies.xml
 C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.Migrations.Test.resources
 C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.GenerateResource.cache
 C:\Users\askev\source\repos\EmilLykke\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.AssemblyReference.cache
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.Migrations.Test.resources
+C:\PROJEKTER\C#\ImgFix2.0\ImgFix\ImgFix\obj\Debug\ImgFix.csproj.GenerateResource.cache
