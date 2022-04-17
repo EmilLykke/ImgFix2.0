@@ -9,23 +9,24 @@ namespace ImgFix
 {
     public class Startup
     {
+        //Her exposer vi vores UserManager
         public static Func<UserManager<AppUser>> UserManagerFactory { get; private set; }
 
         public void Configuration(IAppBuilder app)
         {
-            // this is the same as before
+            //Sæt siden til at bruge cookies ved Autentificering
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                //Hjem siden, hvis ikke logget ind.
                 LoginPath = new PathString("/Home/Index")
             });
 
-            // configure the user manager
+            //Konfigurer user manager
             UserManagerFactory = () =>
             {
                 var usermanager = new UserManager<AppUser>(
                     new UserStore<AppUser>(new AppDbContext()));
-                // allow alphanumeric characters in username
                 usermanager.UserValidator = new UserValidator<AppUser>(usermanager)
                 {
                     AllowOnlyAlphanumericUserNames = false
